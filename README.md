@@ -1,4 +1,4 @@
-Exploration of complexity with ngrams.
+Early-days exploration of complexity with ngrams. 
 
 Todo:
 
@@ -7,4 +7,3 @@ Todo:
 - Time complexity of search
 - Make more efficient - array intersection, dictionary for char location indices. 
 - Look at memory complexity - how it changes with different file sizes.
-- Write up on GH.

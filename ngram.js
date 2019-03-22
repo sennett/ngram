@@ -10,7 +10,8 @@ function findThePiece (ngrams, needleNgrams, requiredIndices = null) {
 
   let needleNgram = needleNgrams[0]
 
-  // todo: cache these smaller end ngrams in ngram dict, then don't need to loop through everything each time
+  // todo: cache these smaller end ngrams in ngram dict, then don't need to loop through everything each time.
+  //  perhaps can trade space for time complexity here by using/including a smaller ngram size in the dictionary?
   let haystackNgram = Object.getOwnPropertyNames(ngrams).find((ngram) => ngram.startsWith(needleNgram))
 
   if (!haystackNgram) {
@@ -26,6 +27,7 @@ function findThePiece (ngrams, needleNgrams, requiredIndices = null) {
 
   let newIndices = []
 
+  // todo: find intersection in O(N): https://www.geeksforgeeks.org/union-and-intersection-of-two-sorted-arrays-2/
   ngramIndexes.forEach((index) => {
     if (requiredIndices.includes(index)) { // ensure index
       newIndices.push(index + NGRAM_LENGTH) // push new index
@@ -37,7 +39,7 @@ function findThePiece (ngrams, needleNgrams, requiredIndices = null) {
     return false
   }
 
-  let nextNeedleNgrams = needleNgrams.slice(1) // remove first ngram - down the tree
+  let nextNeedleNgrams = needleNgrams.slice(1) // remove first ngram - recurse down the tree
 
   return findThePiece(ngrams, nextNeedleNgrams, newIndices)
 }
